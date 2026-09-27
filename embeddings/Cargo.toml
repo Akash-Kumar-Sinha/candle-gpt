@@ -7,3 +7,4 @@ edition = "2024"
 tensor = { workspace = true }
 candle-weights = { workspace = true } 
 thiserror = { workspace = true }
+rayon = { workspace = true }
