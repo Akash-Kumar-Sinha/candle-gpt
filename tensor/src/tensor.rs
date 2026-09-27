@@ -47,6 +47,14 @@ impl<const R: usize> Tensor<R> {
     }
 }
 
+impl Tensor<2> {
+    pub fn row_slice(&self, row: usize) -> &[f32] {
+        let cols = self.shape[1];
+        let start = row * cols;
+        &self.data[start..start + cols]
+    }
+}
+
 impl<const R: usize> TensorOps<R> for Tensor<R> {
     fn ones(shape: [usize; R]) -> Result<Self> {
         Self::raw_new_val(1.0, shape)
