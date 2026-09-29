@@ -1,6 +1,6 @@
 use std::io::{self, Write};
-use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
+use std::sync::atomic::{AtomicBool, Ordering};
 use std::thread;
 use std::time::Duration;
 
@@ -39,12 +39,35 @@ pub fn print_user_prompt() {
     io::stdout().flush().ok();
 }
 
+pub fn print_candle_prompt() {
+    print!("{BOLD_CYAN}Candle>{RESET} ");
+    io::stdout().flush().ok();
+}
+
+pub fn print_stream_token(token_text: &str) {
+    print!("{token_text}");
+    io::stdout().flush().ok();
+}
+
+pub fn print_stream_end(output: &PipelineOutput) {
+    println!();
+    println!("{DIM}  ↳ Input tokens: {:?}{RESET}", output.input_tokens);
+    println!(
+        "{DIM}  ↳ Generated tokens: {:?}{RESET}",
+        output.generated_tokens
+    );
+    println!("{DIM}  ↳ Complete text: {}{RESET}", output.full_text);
+}
+
+#[allow(dead_code)]
 pub fn print_output(output: &PipelineOutput) {
-    println!("{BOLD_CYAN}Candle>{RESET} {}", output.decoded_text);
-    println!("{DIM}  ↳ Generated tokens: {:?}{RESET}", output.tokens);
-    println!("{DIM}  ↳ Embeddings count: {}{RESET}", output.embeddings_len);
-    println!("{DIM}  ↳ Reconstructed tokens: {:?}{RESET}", output.reconstructed_tokens);
-    println!("{DIM}  ↳ Decoded back: {}{RESET}", output.decoded_text);
+    println!("{BOLD_CYAN}Candle>{RESET} {}", output.generated_text);
+    println!("{DIM}  ↳ Input tokens: {:?}{RESET}", output.input_tokens);
+    println!(
+        "{DIM}  ↳ Generated tokens: {:?}{RESET}",
+        output.generated_tokens
+    );
+    println!("{DIM}  ↳ Complete text: {}{RESET}", output.full_text);
 }
 
 pub struct LoadingAnimation {
