@@ -24,16 +24,23 @@ impl LayerWeights {
         let prefix = format!("{weights_dir}/transformer.h.{layer_idx}");
         let ln_1_weight = load_1d_tensor_from_txt(&format!("{prefix}.ln_1.weight.txt"), 768)?;
         let ln_1_bias = load_1d_tensor_from_txt(&format!("{prefix}.ln_1.bias.txt"), 768)?;
-        let attn_c_attn_weight = load_2d_tensor_from_txt(&format!("{prefix}.attn.c_attn.weight.txt"), 768, 2304)?;
-        let attn_c_attn_bias = load_1d_tensor_from_txt(&format!("{prefix}.attn.c_attn.bias.txt"), 2304)?;
-        let attn_c_proj_weight = load_2d_tensor_from_txt(&format!("{prefix}.attn.c_proj.weight.txt"), 768, 768)?;
-        let attn_c_proj_bias = load_1d_tensor_from_txt(&format!("{prefix}.attn.c_proj.bias.txt"), 768)?;
+        let attn_c_attn_weight =
+            load_2d_tensor_from_txt(&format!("{prefix}.attn.c_attn.weight.txt"), 768, 2304)?;
+        let attn_c_attn_bias =
+            load_1d_tensor_from_txt(&format!("{prefix}.attn.c_attn.bias.txt"), 2304)?;
+        let attn_c_proj_weight =
+            load_2d_tensor_from_txt(&format!("{prefix}.attn.c_proj.weight.txt"), 768, 768)?;
+        let attn_c_proj_bias =
+            load_1d_tensor_from_txt(&format!("{prefix}.attn.c_proj.bias.txt"), 768)?;
         let ln_2_weight = load_1d_tensor_from_txt(&format!("{prefix}.ln_2.weight.txt"), 768)?;
         let ln_2_bias = load_1d_tensor_from_txt(&format!("{prefix}.ln_2.bias.txt"), 768)?;
-        let mlp_c_fc_weight = load_2d_tensor_from_txt(&format!("{prefix}.mlp.c_fc.weight.txt"), 768, 3072)?;
+        let mlp_c_fc_weight =
+            load_2d_tensor_from_txt(&format!("{prefix}.mlp.c_fc.weight.txt"), 768, 3072)?;
         let mlp_c_fc_bias = load_1d_tensor_from_txt(&format!("{prefix}.mlp.c_fc.bias.txt"), 3072)?;
-        let mlp_c_proj_weight = load_2d_tensor_from_txt(&format!("{prefix}.mlp.c_proj.weight.txt"), 3072, 768)?;
-        let mlp_c_proj_bias = load_1d_tensor_from_txt(&format!("{prefix}.mlp.c_proj.bias.txt"), 768)?;
+        let mlp_c_proj_weight =
+            load_2d_tensor_from_txt(&format!("{prefix}.mlp.c_proj.weight.txt"), 3072, 768)?;
+        let mlp_c_proj_bias =
+            load_1d_tensor_from_txt(&format!("{prefix}.mlp.c_proj.bias.txt"), 768)?;
 
         Ok(Self {
             ln_1_weight,

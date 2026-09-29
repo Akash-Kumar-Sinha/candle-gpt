@@ -25,10 +25,14 @@ pub enum TensorError {
         rhs: Vec<usize>,
     },
 
-    #[error("Matrix multiplication requires at least 2 dimensions, found tensor with {ndim} dimensions")]
+    #[error(
+        "Matrix multiplication requires at least 2 dimensions, found tensor with {ndim} dimensions"
+    )]
     InvalidRank { ndim: usize },
 
-    #[error("Batch dimension mismatch for matmul: batch dim {dim_idx} differs (lhs: {lhs_dim}, rhs: {rhs_dim})")]
+    #[error(
+        "Batch dimension mismatch for matmul: batch dim {dim_idx} differs (lhs: {lhs_dim}, rhs: {rhs_dim})"
+    )]
     BatchDimMismatch {
         dim_idx: usize,
         lhs_dim: usize,
