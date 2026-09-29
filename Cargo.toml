@@ -8,7 +8,7 @@ name = "candle-gpt"
 path = "src/main.rs"
 
 [workspace]
-members = ["candle-weights","tensor", "candle-tokenizer", "embeddings"]
+members = ["candle-weights","tensor", "candle-tokenizer", "embeddings", "transformer"]
 resolver = "3"
 
 [workspace.dependencies]
@@ -19,6 +19,7 @@ tensor = {path = "./tensor"}
 embeddings = {path = "./embeddings"}
 candle-tokenizer = {path = "./candle-tokenizer"}
 candle-weights = {path = "./candle-weights"}
+transformer = {path = "./transformer"}
 
 [dependencies]
 clap = { workspace = true }
@@ -26,3 +27,5 @@ thiserror = { workspace = true }
 tensor = { workspace = true }
 candle-tokenizer.workspace = true
 embeddings = { workspace = true }
+transformer = { workspace = true }
+

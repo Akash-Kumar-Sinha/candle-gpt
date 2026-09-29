@@ -102,6 +102,7 @@ dependencies = [
  "embeddings",
  "tensor",
  "thiserror",
+ "transformer",
 ]
 
 [[package]]
@@ -116,6 +117,7 @@ dependencies = [
 name = "candle-weights"
 version = "0.1.0"
 dependencies = [
+ "rayon",
  "tensor",
 ]
 
@@ -840,6 +842,7 @@ dependencies = [
 name = "tensor"
 version = "0.1.0"
 dependencies = [
+ "rayon",
  "thiserror",
 ]
 
@@ -895,6 +898,16 @@ dependencies = [
  "unicode-normalization-alignments",
  "unicode-segmentation",
  "unicode_categories",
+]
+
+[[package]]
+name = "transformer"
+version = "0.1.0"
+dependencies = [
+ "candle-weights",
+ "rayon",
+ "tensor",
+ "thiserror",
 ]
 
 [[package]]
