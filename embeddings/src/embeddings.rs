@@ -43,6 +43,18 @@ impl Embeddings {
         })
     }
 
+    // h_0 = wte[token] + wpe[pos]
+    pub fn forward_single_token(&self, token_id: u32, pos: usize) -> Tensor<2> {
+        let embedding_dim = self.wte.shape[1];
+        let tok_start = (token_id as usize) * embedding_dim;
+        let pos_start = pos * embedding_dim;
+        let mut data = vec![0.0f32; embedding_dim];
+        for i in 0..embedding_dim {
+            data[i] = self.wte.data[tok_start + i] + self.wpe.data[pos_start + i];
+        }
+        Tensor::new(data, [1, embedding_dim]).unwrap()
+    }
+
     pub fn embeddings_to_token(&self, embeddings: &Tensor<2>) -> Result<Vec<u32>> {
         let vocab_size = self.wte.shape[0];
         let embedding_dim = self.wte.shape[1];
